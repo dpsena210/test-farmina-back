@@ -10,3 +10,11 @@
 dist/
 build/
 
+.idea/
+.idea/.gitignore
+.idea/.name
+.idea/inspectionProfiles/...
+.idea/misc.xml
+.idea/modules.xml
+.idea/*.iml
+
