@@ -1,4 +1,3 @@
-import json
 
 from flask import request as flask_request
 
@@ -6,7 +5,7 @@ import requests
 
 
 from flask import Flask, jsonify
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, resources=r'*')
@@ -21,7 +20,7 @@ def get_data():
     productType = data.get('productType')
     specialcares = data.get('specialcares')
     lifestage = data.get('lifeStage')
-    print("gestante",gestation)
+
     if specialcares != None:
         specialcares_ids =[specialcares]
     else:
@@ -40,7 +39,6 @@ def get_data():
                   },
                   auth=("wsfarmina_zendesk", "test"),
                 headers={'Accept': 'application/json'}
-
                   )
 
     json_result = result.json()
@@ -52,21 +50,17 @@ def get_data():
     list_objects = []
     new_object = {}
     for key in keylist:
-
         new_object["id"] = str(key)
         new_object["type"] = products[key]["type"]
         new_object["name"]= products[key]["name"]
         new_object["productType"]= products[key]["productType"]
-        print("cabecao",bool(gestation))
         new_object["gestation"]= gestation
         new_object["lactation"]= lactation
         new_object["lifeStages"]= products[key]["lifeStages"]
         new_object["specialcares"]= products[key]["specialcares"]
         list_objects.append(new_object)
         new_object= {}
-
     return jsonify({"products_filtered":list_objects}),200
-
 
 
 @app.route('/api/special', methods=['POST'])
@@ -92,4 +86,4 @@ def get_data_specia():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Roda em http://localhost:5000
+    app.run(debug=True)
