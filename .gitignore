@@ -1,0 +1,12 @@
+# Ambiente virtual (venv, env, etc.)
+
+.venv/
+
+
+*.env
+
+
+*.egg-info/
+dist/
+build/
+
